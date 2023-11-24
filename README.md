@@ -13,7 +13,7 @@ Our Phone_Screen dataset was collected from factories involved in mobile screen 
 The  file structure of this dataset:
 
 ```
--─SAM-IVD
+──SAM-IVD
     └─dataset
         └─phone_screen512x512_ade
             ├─annotations
@@ -76,8 +76,27 @@ git clone git@github.com:facebookresearch/segment-anything.git
 cd segment-anything; pip install -e .
 ```
 
-3. 
+3. Download Model Checkpoints
 
+Three model versions of the model are available with different backbone sizes. These models can be instantiated by running
+
+| Parameters          | SAM (ViT-H) | SAM (ViT-L) | SAM (ViT-B) |
+| ------------------- | ----------- | ----------- | ----------- |
+| ViT-based Encoder   | 632M        | 307M        | 86M         |
+| Prompt Encoder      | 0.006M      | 0.006M      | 0.006M      |
+| Mask Decoder        | 3.87M       | 3.87M       | 3.87M       |
+
+
+```
+from segment_anything import sam_model_registry
+sam = sam_model_registry["<model_type>"](checkpoint="<path/to/checkpoint>")
+```
+
+Click the links below to download the checkpoint for the corresponding model type.
+
+- `vit_h`: [ViT-H SAM model.](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth)
+- `vit_l`: [ViT-L SAM model.](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth)
+- `vit_b`: [ViT-B SAM model.](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth)
 
 ### Citation
 
